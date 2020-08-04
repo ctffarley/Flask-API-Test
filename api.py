@@ -60,13 +60,16 @@ ns = api.namespace('menu', description='menu CRUD operations')
 # menu.add_item('Burger', 10)
 
 class Food(base):
+    # table for the food be stored in
     __tablename__ = 'menuv2'
 
+    # columns for the table, id autoincrements
     id = Column(Integer, primary_key=True)
     name = Column(String)
     price = Column(Integer)
 
 
+# boilerplate initialization for SQLAlchemy
 Session = sessionmaker(db)  
 session = Session()
 
@@ -77,6 +80,7 @@ base.metadata.create_all(db)
 class MenuPage(Resource):
     @ns.marshal_list_with(item)
     def get(self):
+        # get all entries from table
         return session.query(Food).all()
 
 # route allows you to delete an item based on id
@@ -96,8 +100,10 @@ class MenuItem(Resource):
         name = request.args['name']
         price = request.args['price']
 
-        # add item to menu
+        # create temporary item
         temp = Food(name=name, price=price)
+
+        # add item to session then commit to database
         session.add(temp)
         session.commit()
 
@@ -107,8 +113,10 @@ class MenuItem(Resource):
         id = request.args['id']
         price = request.args['price']
 
-        # TODO: query the db by id, then change the price
+        # query the db by id
         target = session.query(Food).filter(Food.id == id).first()
+
+        # change the item's price, then commit to database
         target.price = price
         session.commit()
 
