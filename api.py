@@ -3,12 +3,19 @@ from flask_restx import Resource, Api, fields
 from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
 app = Flask(__name__)
 api = Api(app)
 app.config["DEBUG"] = True
 
-db_string = 'postgresql://postgres:pass@127.0.0.1:5432/restaurant'
+db_user = os.environ['POSTGRES_USER']
+db_pass = os.environ['POSTGRES_PASSWORD']
+db_ip = os.environ['POSTGRES_IP']
+db_port = os.environ['POSTGRES_PORT']
+db_name = os.environ['POSTGRES_DATABASE']
+
+db_string = f'postgresql://{db_user}:{db_pass}@{db_ip}:{db_port}/{db_name}'
 db = create_engine(db_string)  
 base = declarative_base()
 
@@ -19,45 +26,6 @@ item = api.model('Food', {
 })
 
 ns = api.namespace('menu', description='menu CRUD operations')
-
-# class Food:
-#     def __init__(self, name, price, id):
-#         self.name = name
-#         self.price = price
-#         self.id = id
-
-#     def update_price(self, price):
-#         self.price = price
-
-# class Menu:
-#     def __init__(self):
-#         self.items = []
-#         self.count = 0
-
-#     def list_items(self):
-#         return self.items
-
-#     def add_item(self, name, price):
-#         self.items.append(Food(name, price, self.count))
-#         self.count += 1
-
-#     def remove_item(self, item):
-#         self.items.remove(item)
-
-#     def update_price(self, id, price):
-#         for i in self.items:
-#             if i.id == id:
-#                 i.update_price(price)
-
-#     def get_item(self, id):
-#         for i in self.items:
-#             if i.id == id:
-#                 return i
-
-
-# menu = Menu()
-
-# menu.add_item('Burger', 10)
 
 class Food(base):
     # table for the food be stored in
