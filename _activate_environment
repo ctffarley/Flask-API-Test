@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# activates virtual envirenoment and exports variables in .env file
+
+# IMPORTANT: MUST BE RUN LIKE SO `. _activate_environment` in order to receive
+# environment variable
+
+# TODO: clean up scripts and explanation in README
+source .env
+source ./$VENV_NAME/bin/activate
