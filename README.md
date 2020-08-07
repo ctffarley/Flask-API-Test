@@ -22,6 +22,9 @@ in the `.env` file as `VENV_NAME`.
 Specify the postgres configuration such as IP/domain, port, user, password, etc.
 in `.env`. 
 
+Once all environment varaibles have been set, run `source .env` in order to
+export all environment variables
+
 ## Scripts
 * `_activate_environment`
     * exports environment varaibles in `.env` and activates the virtual environment
