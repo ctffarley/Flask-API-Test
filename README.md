@@ -18,6 +18,9 @@ Create a new virtual environment then run `_install_requirements` to pip install
 the packages in `requirements.txt`. Store the name of your virtual environment
 in the `.env` file as `VENV_NAME`.
 
+Enter the virtual environment and run `_install_requirements` to install the 
+necessary dependencies.
+
 ### Postgres Setup
 Specify the postgres configuration such as IP/domain, port, user, password, etc.
 in `.env`. 
