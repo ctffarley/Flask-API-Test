@@ -1,3 +1,4 @@
 env
 .env
 sqlalchemytest.py
+__pycache__
