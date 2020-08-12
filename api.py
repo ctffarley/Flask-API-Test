@@ -4,10 +4,11 @@ from sqlalchemy import create_engine, Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app)
-app.config["DEBUG"] = True
 
 db_user = os.environ['POSTGRES_USER']
 db_pass = os.environ['POSTGRES_PASSWORD']
@@ -89,4 +90,4 @@ class MenuItem(Resource):
         session.commit()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
