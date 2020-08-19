@@ -5,10 +5,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 from werkzeug.middleware.proxy_fix import ProxyFix
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app)
+
+CORS(app)
 
 db_user = os.environ['POSTGRES_USER']
 db_pass = os.environ['POSTGRES_PASSWORD']
