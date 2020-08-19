@@ -36,6 +36,9 @@ export all environment variables
 * `_export_requirements`
     * used to export current dependencies to `requirements.txt`
 
+* `_gunicorn_start`
+    * starts gunicorn using config file
+
 * `_install_requirements`
     * used to install all dependencies from `requirements.txt`
     * should be run inside the virtual environment
