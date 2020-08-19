@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Script used to start gunicorn, called by the flask_api service
+
+. .env
+
+/home/clax/Flask-API-Test/test-api-env/bin/gunicorn --config /home/clax/Flask-API-Test/gunicorn_config.py wsgi:app
