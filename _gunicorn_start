@@ -4,4 +4,4 @@
 
 . .env
 
-/home/clax/Flask-API-Test/test-api-env/bin/gunicorn --config /home/clax/Flask-API-Test/gunicorn_config.py wsgi:app
+./$VENV_NAME/gunicorn --config gunicorn_config.py wsgi:app
