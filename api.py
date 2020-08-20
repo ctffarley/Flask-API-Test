@@ -61,6 +61,7 @@ class DeleteItem(Resource):
     def delete(self, id):
         # query based on ID then remove that object
         session.query(Food).filter(Food.id == id).delete()
+        session.commit()
 
 # This route supports post and put operations to create and update menu items,
 # respectively
