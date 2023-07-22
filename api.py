@@ -9,25 +9,23 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app)
-db_user = os.environ['POSTGRES_USER']
-db_pass = os.environ['POSTGRES_PASSWORD']
-db_ip = os.environ['POSTGRES_IP']
-db_port = os.environ['POSTGRES_PORT']
-db_name = os.environ['POSTGRES_DATABASE']
-
-full_url = False
 
 deployment = os.environ['DEPLOYMENT']
 
-if deployment == 'render':
-    full_url = True
-
 db_string = None
+
+if deployment == 'render':
+    db_string = os.environ['DB_URL']
+else:
+    db_user = os.environ['POSTGRES_USER']
+    db_pass = os.environ['POSTGRES_PASSWORD']
+    db_ip = os.environ['POSTGRES_IP']
+    db_port = os.environ['POSTGRES_PORT']
+    db_name = os.environ['POSTGRES_DATABASE']
 
 if not full_url:
     db_string = f'postgresql://{db_user}:{db_pass}@{db_ip}:{db_port}/{db_name}'
 else:
-    db_string = os.environ['DB_URL']
 
 db = create_engine(db_string)  
 base = declarative_base()
