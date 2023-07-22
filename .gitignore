@@ -2,3 +2,4 @@ env
 .env
 sqlalchemytest.py
 __pycache__
+.api.py.swp
