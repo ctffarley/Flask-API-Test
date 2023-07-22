@@ -19,7 +19,7 @@ full_url = False
 
 deployment = os.environ['DEPLOYMENT']
 
-if deployment == 'render'
+if deployment == 'render':
     full_url = True
 
 db_string = None
