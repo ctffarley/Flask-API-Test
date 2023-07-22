@@ -22,10 +22,7 @@ else:
     db_ip = os.environ['POSTGRES_IP']
     db_port = os.environ['POSTGRES_PORT']
     db_name = os.environ['POSTGRES_DATABASE']
-
-if not full_url:
     db_string = f'postgresql://{db_user}:{db_pass}@{db_ip}:{db_port}/{db_name}'
-else:
 
 db = create_engine(db_string)  
 base = declarative_base()
