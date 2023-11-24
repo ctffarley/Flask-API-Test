@@ -14,12 +14,7 @@ environent variables for configuring the API (these values will be assigned in
 the sections below).
 
 ### Python Setup
-Create a new virtual environment then run `_install_requirements` to pip install
-the packages in `requirements.txt`. Store the name of your virtual environment
-in the `.env` file as `VENV_NAME`.
-
-Enter the virtual environment and run `_install_requirements` to install the 
-necessary dependencies.
+Create a new virtual environment named `.venv`, activate it with `source .venv/bin/activate`, and install dependencies with `_install_requirements`
 
 ### Postgres Setup
 Specify the postgres configuration such as IP/domain, port, user, password, etc.
