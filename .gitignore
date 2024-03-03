@@ -2,3 +2,4 @@
 .venv
 sqlalchemytest.py
 __pycache__
+pyrightconfig.json
